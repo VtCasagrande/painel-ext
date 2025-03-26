@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16-alpine as builder
 
 WORKDIR /app
 
@@ -11,13 +11,15 @@ RUN npm install --legacy-peer-deps
 # Copiar o restante do código
 COPY . .
 
-# Expor a porta que a aplicação usa
-EXPOSE 3000
+# Etapa de produção com Nginx
+FROM nginx:alpine
 
-# Adicionar healthcheck simples usando curl
-RUN apk --no-cache add curl
-HEALTHCHECK --interval=10s --timeout=5s --start-period=15s --retries=3 \
-  CMD curl -f http://localhost:3000/health || exit 1
+# Copiar os arquivos estáticos
+COPY --from=builder /app/public /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Comando para iniciar a aplicação
-CMD ["node", "server.js"] 
+# Expor a porta 80
+EXPOSE 80
+
+# Iniciar o Nginx
+CMD ["nginx", "-g", "daemon off;"] 

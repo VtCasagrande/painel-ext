@@ -9,6 +9,21 @@ services:
     container_name: nmalls-painel
     restart: always
     ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+
+  # Serviço API separado
+  api:
+    build:
+      context: ./painel
+      dockerfile: Dockerfile.api
+    image: nmalls-api:latest
+    container_name: nmalls-api
+    restart: always
+    ports:
       - "3000:3000"
     environment:
       - PORT=3000
@@ -17,9 +32,6 @@ services:
       - SUPABASE_KEY=${SUPABASE_KEY}
       - JWT_SECRET=${JWT_SECRET}
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
-    volumes:
-      - ./painel:/app
-      - /app/node_modules
     networks:
       - app-network
 
