@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # Frontend (interface web estática servida pelo Nginx)
   painel:
     build:
       context: ./painel
@@ -12,10 +13,12 @@ services:
       - "80:80"
     environment:
       - NODE_ENV=production
+    depends_on:
+      - api
     networks:
       - app-network
 
-  # Serviço API separado
+  # Backend (API Node.js)
   api:
     build:
       context: ./painel

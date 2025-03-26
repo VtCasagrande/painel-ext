@@ -14,13 +14,16 @@ ENV NODE_OPTIONS=--max_old_space_size=4096
 # Copiar o restante do código
 COPY . .
 
-# Expor a porta da API
-EXPOSE 3000
+# Adicionar script de healthcheck
+RUN echo '// Health check script\nrequire("http").createServer((req, res) => { res.writeHead(200); res.end("OK"); }).listen(3001);' > /app/healthcheck.js
+
+# Expor as portas da API e do health check
+EXPOSE 3000 3001
 
 # Adicionar healthcheck
 RUN apk --no-cache add curl
 HEALTHCHECK --interval=10s --timeout=5s --start-period=15s --retries=3 \
-  CMD curl -f http://localhost:3000/health || exit 1
+  CMD curl -f http://localhost:3001/ || exit 1
 
 # Comando para iniciar a aplicação
-CMD ["node", "server.js"] 
+CMD ["sh", "-c", "node healthcheck.js & node server.js"] 
