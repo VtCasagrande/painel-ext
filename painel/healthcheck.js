@@ -2,23 +2,23 @@ const http = require('http');
 
 const options = {
   host: 'localhost',
-  port: process.env.PORT || 3000,
+  port: 3000,
   path: '/health',
   timeout: 2000
 };
 
 const healthCheck = http.request(options, (res) => {
-  console.log(`HEALTHCHECK STATUS: ${res.statusCode}`);
+  console.log(`HEALTH CHECK STATUS: ${res.statusCode}`);
   if (res.statusCode === 200) {
-    process.exit(0);
+    process.exit(0);  // Sucesso
   } else {
-    process.exit(1);
+    process.exit(1);  // Falha
   }
 });
 
-healthCheck.on('error', function(err) {
-  console.error('HEALTHCHECK ERROR: ', err);
-  process.exit(1);
+healthCheck.on('error', (err) => {
+  console.error('HEALTH CHECK FALHOU:', err);
+  process.exit(1);  // Falha
 });
 
 healthCheck.end(); 
