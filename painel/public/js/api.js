@@ -6,7 +6,10 @@ class API {
    * Construtor
    */
   constructor() {
-    this.baseUrl = '/api';
+    // Utiliza a URL atual como base para as requisições API
+    this.baseUrl = `${window.location.protocol}//${window.location.host}/api`;
+    console.log(`API Base URL: ${this.baseUrl}`);
+    
     this.headers = {
       'Content-Type': 'application/json'
     };

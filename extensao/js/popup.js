@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Configurar URL do painel web
-  const painelUrl = 'http://localhost:3000';
+  // Altere esta URL para o endereço do seu servidor
+  const painelUrl = 'http://nmallsinterno-painel-rec.op6qrj.easypanel.host';
   abrirPainelBtn.href = painelUrl;
   
   // Consultar cliente por CPF
