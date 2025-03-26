@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NMalls Recorrência</title>
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>NMalls Recorrência</h1>
+    </header>
+    
+    <main>
+      <div id="cpf-container">
+        <label for="cpf">CPF do Cliente:</label>
+        <div class="input-group">
+          <input type="text" id="cpf" placeholder="Digite o CPF">
+          <button id="consultar">Consultar</button>
+        </div>
+      </div>
+
+      <div id="result-container">
+        <div id="loading" class="hidden">Consultando...</div>
+        <div id="error-message" class="hidden"></div>
+        <div id="client-info" class="hidden">
+          <h2>Informações do Cliente</h2>
+          <div id="client-details"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a href="http://localhost:3000" target="_blank" id="abrir-painel">Abrir Painel Completo</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>NMalls &copy; 2023</p>
+    </footer>
+  </div>
+
+  <script src="js/popup.js"></script>
+</body>
+</html> 

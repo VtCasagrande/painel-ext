@@ -1,0 +1,191 @@
+/* Estilos do painel web */
+body {
+  min-height: 100vh;
+  padding-bottom: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 48px 0 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link.active {
+  color: #0d6efd;
+}
+
+.sidebar .nav-link:hover {
+  color: #0d6efd;
+}
+
+.sidebar .nav-link .bi {
+  margin-right: 0.5rem;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/* Content */
+main {
+  min-height: calc(100vh - 56px);
+  padding-top: 1.5rem;
+}
+
+.table th {
+  background-color: #f8f9fa;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Custom card styles */
+.card-hover:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Badges */
+.badge-success {
+  background-color: #198754;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Custom buttons */
+.btn-action {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Table responsive */
+.table-responsive {
+  margin-bottom: 1rem;
+}
+
+/* Login page */
+.login-container {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Custom borders */
+.border-dashed {
+  border-style: dashed !important;
+}
+
+/* Fixed action buttons */
+.fixed-action-btn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 999;
+}
+
+/* Recurrence status badges */
+.status-ativa {
+  background-color: #198754;
+  color: white;
+}
+
+.status-pausada {
+  background-color: #fd7e14;
+  color: white;
+}
+
+.status-cancelada {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Loading spinner */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Tooltip */
+.tooltip-inner {
+  max-width: 200px;
+}
+
+/* Login modal */
+#loginModal .modal-dialog {
+  margin-top: 5rem;
+}
+
+/* Search box */
+.search-box {
+  position: relative;
+}
+
+.search-box .bi-search {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.search-box input {
+  padding-left: 35px;
+}
+
+/* Custom accordion */
+.accordion-button:not(.collapsed) {
+  background-color: #e7f1ff;
+  color: #0d6efd;
+} 
