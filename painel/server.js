@@ -19,6 +19,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Rota de health check para monitoramento
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 // Importar rotas
 const clientesRoutes = require('./routes/clientes');
 const recorrenciasRoutes = require('./routes/recorrencias');
@@ -36,14 +41,15 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Iniciar o servidor
-app.listen(port, () => {
+// Iniciar o servidor - Modificado para ouvir em todas as interfaces (0.0.0.0)
+app.listen(port, '0.0.0.0', () => {
   console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Acesse: http://localhost:${port}`);
 });
 
 // Tratamento de erros
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error('Erro na aplicação:', err.stack);
   res.status(500).json({
     status: 'error',
     message: 'Algo deu errado no servidor',

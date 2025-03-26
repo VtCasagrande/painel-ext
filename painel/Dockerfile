@@ -14,5 +14,8 @@ COPY . .
 # Expor a porta que a aplicação usa
 EXPOSE 3000
 
-# Comando para iniciar a aplicação
+# Adicionar healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 CMD node healthcheck.js
+
+# Comando para iniciar a aplicação - com HOST 0.0.0.0 para ouvir em todas as interfaces
 CMD ["node", "server.js"] 
