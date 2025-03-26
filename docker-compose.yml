@@ -5,6 +5,7 @@ services:
     build:
       context: ./painel
       dockerfile: Dockerfile
+    image: nmalls-painel:latest
     container_name: nmalls-painel
     restart: always
     ports:
@@ -12,10 +13,16 @@ services:
     environment:
       - PORT=3000
       - NODE_ENV=production
-      - SUPABASE_URL=sua_url_do_supabase
-      - SUPABASE_KEY=sua_chave_do_supabase
-      - JWT_SECRET=seu_segredo_para_jwt
-      - JWT_EXPIRES_IN=24h
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
     volumes:
       - ./painel:/app
-      - /app/node_modules 
+      - /app/node_modules
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge 
